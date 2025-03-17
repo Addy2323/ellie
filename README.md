@@ -1,5 +1,7 @@
 # Ellie - The AI-Powered CLI Companion 🤖✨
 
+
+`
 **Meet Ellie** - Your all-in-one terminal buddy for system management, Git workflows, and productivity hacks. Built with ❤️ by **Tachera Sasi**
 
 ## What's New in v0.0.5? 🎉
