@@ -9,7 +9,6 @@ import (
 	actions "github.com/tacheraSasi/ellie/action"
 	"github.com/tacheraSasi/ellie/command"
 	"github.com/tacheraSasi/ellie/configs"
-	"github.com/tacheraSasi/ellie/gui"
 	"github.com/tacheraSasi/ellie/styles"
 )
 
@@ -226,7 +225,6 @@ func main() {
 	// Setup global flags
 	showHelp := flag.Bool("help", false, "Show help information")
 	showVersion := flag.Bool("version", false, "Show version information")
-	useGUI := flag.Bool("gui", false, "Use GUI mode")
 	flag.Parse()
 
 	// Handle global flags
@@ -244,13 +242,6 @@ func main() {
 
 	// Get remaining arguments after flags
 	args := flag.Args()
-
-	// GUI mode
-	if *useGUI {
-		mainWindow := gui.NewMainWindow()
-		mainWindow.Show()
-		return
-	}
 
 	// Interactive mode if no commands
 	if len(args) == 0 {
