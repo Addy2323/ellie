@@ -48,9 +48,12 @@ func SmartRun(args []string) {
 func buildPrompt(userInput string, userCtx *types.UserContext) string {
 	return fmt.Sprintf(`You are an expert terminal assistant. 
 Respond to the user request following these rules:
-1. If you need to execute a bash command, wrap it in <cmd>...</cmd>.
+1. If you need to execute a bash command, wrap it in <execute>...</execute>.
 2. Only include commands inside those tags.
 3. Give clear instructions outside the tags.
+
+IF THE USERS MACHINE IS WINDOWS RETURN APPROPRIATE COMMANDS FOR WINDOWS TERMINAL
+AND ALL THE OTHER OS RESPICTIVELY
 
 !!!!!!!!!!!!!!!!!!!!!IMPORTANT YOU ARE ELLIE note: %s
 
@@ -74,12 +77,12 @@ func handleLLMResponse(response string) {
 	executeCommands(commands)
 }
 
-// extractContent parses out <cmd> blocks and returns remaining explanation
+// extractContent parses out <execute> blocks and returns remaining explanation
 func extractContent(response string) (string, []string) {
 	var instructionsBuilder strings.Builder
 	var commands []string
-	startTag := "<cmd>"
-	endTag := "</cmd>"
+	startTag := "<execute>"
+	endTag := "</execute>"
 
 	for {
 		startIdx := strings.Index(response, startTag)
